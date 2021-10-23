@@ -24,13 +24,13 @@ class ImdbSpider(scrapy.Spider):
             
     
     def parse_actor_page(self, response):
-        movie = response.css("b a::text").getall()
+        movies = response.css("b a::text").getall()
         name = response.css("div span.itemprop::text").get()
         
-        
-        yield {
-            "name" : name,
-            "movie": movie }
+        for movie in movies:
+            yield {
+                "name" : name,
+                "movie": movie }
     
         
     
